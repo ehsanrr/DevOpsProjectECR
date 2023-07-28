@@ -4,7 +4,7 @@ trigger:
     - main
   paths:
     include:
-    - 'KeyVaultDemo'
+    - 'DevOpsProjectECR'
 
 # no PR triggers
 pr: none
@@ -29,10 +29,10 @@ stages:
         - task: Docker@2
           displayName: 'Build Docker image'
           inputs:
-            containerRegistry: 'demo container registry'
-            repository: 'simak-demo-web'
+            containerRegistry: 'willy container registry'
+            repository: 'willycode-demo-web'
             command: 'build'
-            Dockerfile: 'KeyVaultDemo/Dockerfile'
+            Dockerfile: 'Dockerfile'
             buildContext: '.'
             tags: |
               $(Build.BuildId)
@@ -44,8 +44,8 @@ stages:
         - task: Docker@2
           displayName: 'Push image to repository'
           inputs:
-            containerRegistry: 'demo container registry'
-            repository: 'simak-demo-web'
+            containerRegistry: 'willy container registry'
+            repository: 'willycode-demo-web'
             command: 'push'
             tags: |
               $(Build.BuildId)
